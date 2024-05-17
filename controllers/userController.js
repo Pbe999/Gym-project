@@ -1,21 +1,27 @@
-const {User, Role} = require("../models");
+const {User, Role} = require('../models');
 const md5 = require('md5');
 const passport = require('passport');
 
 module.exports.renderRegistrationForm = async function(req, res){
-    const roles = await Role.findAll();
-    console.log(roles);
+    let roles = await Role.findAll();
+    roles.pop();
+    roles.pop();
     res.render('users/register', {roles});
 }
 
 module.exports.register = async function(req, res){
-    await User.create({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email,
-        password: md5(req.body.password),
-        role_id: req.body.role
-    });
+    if(req.body.role === 7){
+        res.redirect('/register')
+        return
+    } else {
+        await User.create({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email,
+            password: md5(req.body.password),
+            role_id: req.body.role
+        });
+    }
     res.redirect('/login')
 }
 
@@ -32,4 +38,9 @@ module.exports.login = passport.authenticate('local', {
 module.exports.logout = function(req, res){
     req.logout();
     res.redirect('/login');
+}
+
+module.exports.renderProfileForm = async function(req,res){
+    const user1 = await User.findByPk(req.params.id);
+    res.render('users/profile', {user1});
 }

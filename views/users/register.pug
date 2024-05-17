@@ -22,7 +22,7 @@ block content
                     input(type="password" name="password" id="password" required=true)
                     div.helper-text Must be 8-20 character long.
                 div.input-container
-                    label(for="role").form-label Role
+                    label(for="role").form-label Membership Type
                     select(id="role" name="role")
                         each role in roles
                             option(value=role.id) #{role.role_name}

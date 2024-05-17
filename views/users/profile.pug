@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+    div.content
+        div.form-header Profile
+        div
+            form(action="/profile" method="POST")
+                div.input-container.wide
+                    h1= `Thank You for becoming a member of GymBros Fitness`
+                    h2= user.first_name
+                    h2= user.last_name
+                    h2= user.email
+                    h3= 'We will send payment information to the provided email. We hope you enjoy the track to bettering your life!'

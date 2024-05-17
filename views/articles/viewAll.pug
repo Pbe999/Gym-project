@@ -3,10 +3,12 @@ extends ../layout
 block content
     include ../mixins/articleCard
     div.articles-header
-        div.article-header-title Here's What's New
+        div.article-header-title Start your journey to better your health with one of our memberships
         div
-            if user && user.is('author')
-                a.button.primary(href='/article/add') Write New Article
+            if user && user.is('Admin')
+                a.button.primary(href='/article/add') Add new Membership Type
+        div
+
 
     ul.article-list
         each article in articles

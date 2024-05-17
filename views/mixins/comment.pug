@@ -8,25 +8,24 @@ mixin comment(comment)
             p [Deleted]
         else
             div.comment-body=comment.body
-            if user && user.is('admin')
-                a(href=`/comment/${comment.id}/delete`) Delete
-        div
-            h4.reply-header Replies (#{comment.replies.length})
-            div.reply-container
-                +replyForm(comment)
-                if comment.replies.length > 0
-                    ul.reply-list
-                        each reply in comment.replies
-                            li
-                                div.comment
-                                    div.comment-header
-                                        div.comment-author=reply.author_name
-                                        div.comment-time=reply.friendlyReplyDate
-                                    if reply.is_deleted
-                                        p [Deleted]
-                                    else
-                                        div.comment-body=reply.body
-                                        if user && user.is('admin')
-                                            a(href=`/comment/${comment.id}/reply/${reply.id}/delete`) Delete
-                else
-                    p.empty-list No Replies
+            a(href=`/comment/${comment.id}/delete`) Delete
+            div
+                h4.reply-header Reviews (#{comment.replies.length})
+                div.reply-container
+                    +replyForm(comment)
+                    if comment.replies.length > 0
+                        ul.reply-list
+                            each reply in comment.replies
+                                li
+                                    div.comment
+                                        div.comment-header
+                                            div.comment-author=reply.author_name
+                                            div.comment-time=reply.friendlyReplyDate
+                                        if reply.is_deleted
+                                            p [Deleted]
+                                        else
+                                            div.comment-body=reply.body
+                                            if user && user.is('admin')
+                                                a(href=`/comment/${comment.id}/reply/${reply.id}/delete`) Delete
+                    else
+                        p.empty-list No Reviews

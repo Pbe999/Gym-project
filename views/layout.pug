@@ -6,13 +6,13 @@ html
   body
       nav
           div.container
-              h3 Blogzilla
+              h3 Gymbros Fitness 💪🏼 ❚█══█❚
               ul.nav.justify-content-end.main.nav
                 li.nav-item
-                  a.nav-link(href='/') View Articles
+                  a.nav-link(href='/') View Memberships
                 if user
                   li.nav-item
-                    a.nav-link(href="#") Hello #{user.first_name}
+                    a.nav-link(href="/profile") Hello #{user.first_name}
                   li.nav-item
                     a.nav-link(href="/logout") Logout
                 else
